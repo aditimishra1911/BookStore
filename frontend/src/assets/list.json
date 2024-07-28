@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "name": "Story Book",
+        "title": "A Tale of Adventure",
+        "price": 0,
+        "category": "Children",
+        "image": "https://img.freepik.com/free-vector/many-wild-animals-forest_1308-35642.jpg?t=st=1721324002~exp=1721327602~hmac=db375a1aaf4de986c2b37041c471206c603be2126592b43d8cca9e6c5c52783f&w=900"
+    },
+    {
+        "id": 2,
+        "name": "Comics",
+        "title": "Superhero Chronicles",
+        "price": 20,
+        "category": "Entertainment",
+        "image": "https://img.freepik.com/free-photo/futuristic-representation-dragon-creature_23-2151201710.jpg?t=st=1721388804~exp=1721392404~hmac=6f549d2de5b22b5f75c1e134fa0c6021c7d97c4d610c8eca6b78533d1836d23d&w=740"
+    },
+    {
+        "id": 3,
+        "name": "Sports Books",
+        "title": "Winning Strategies",
+        "price": 50,
+        "category": "Sports",
+        "image": "https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?t=st=1721388764~exp=1721392364~hmac=54eca93eeb5ed7af0c4bbf51de4e136e93fc64123234eba654683f07cdf00df8&w=740"
+    },
+    {
+        "id": 4,
+        "name": "Music",
+        "title": "The Sound of Music",
+        "price": 0,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-photo/cartoon-style-musical-notes-background_23-2151056773.jpg?t=st=1721390510~exp=1721394110~hmac=bf5d82804492861b8817e903ba4136e9878ea5cf4444f9fd18b7471077cd151e&w=900"
+    },
+    {
+        "id": 5,
+        "name": "Cooking",
+        "title": "Gourmet Recipes",
+        "price": 30,
+        "category": "Cooking",
+        "image": "https://img.freepik.com/free-photo/traditional-mexican-food-world-tourism-day_23-2149114019.jpg?ga=GA1.1.414930206.1721315760&semt=ais_user"
+    },
+    {
+        "id": 6,
+        "name": "Travel",
+        "title": "World Explorer",
+        "price": 40,
+        "category": "Travel",
+        "image": "https://img.freepik.com/free-photo/person-traveling-enjoying-their-vacation_23-2151383050.jpg?ga=GA1.1.414930206.1721315760&semt=sph"
+    },
+    {
+        "id": 7,
+        "name": "Science Fiction",
+        "title": "Future World",
+        "price": 25,
+        "category": "Fiction",
+        "image": "https://img.freepik.com/free-photo/space-travel-collage-design_23-2150163770.jpg?t=st=1721388917~exp=1721392517~hmac=7765bf28e5dbc6ce439a6372d2efbc950a1880e30c14ffc92008f6de6458b4c3&w=900"
+    },
+    {
+        "id": 8,
+        "name": "Biography",
+        "title": "Life of Legends",
+        "price": 35,
+        "category": "Biography",
+        "image": "https://img.freepik.com/free-photo/macro-shot-quill-set-ink-bottle-piece-paper-with-calligraphy-it_181624-58079.jpg?ga=GA1.1.414930206.1721315760&semt=sph"
+    },
+    {
+        "id": 9,
+        "name": "Cooking",
+        "title": "Gourmet Recipes",
+        "price": 30,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-photo/traditional-mexican-food-world-tourism-day_23-2149114019.jpg?ga=GA1.1.414930206.1721315760&semt=ais_user"
+    },
+    {
+        "id": 10,
+        "name": "Travel",
+        "title": "World Explorer",
+        "price": 40,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-photo/person-traveling-enjoying-their-vacation_23-2151383050.jpg?ga=GA1.1.414930206.1721315760&semt=sph"
+    },
+    {
+        "id": 11,
+        "name": "Science Fiction",
+        "title": "Future World",
+        "price": 25,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-photo/space-travel-collage-design_23-2150163770.jpg?t=st=1721388917~exp=1721392517~hmac=7765bf28e5dbc6ce439a6372d2efbc950a1880e30c14ffc92008f6de6458b4c3&w=900"
+    }
+]
