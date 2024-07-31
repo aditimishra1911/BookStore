@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Course from "../components/Course";
 import Footer from "../components/Footer";
 
 const Courses = () => {
-    
+    const [searchTerm, setSearchTerm] = useState("");
+
     return (
         <>
-            <Navbar />
-            {/* The min-h-screen class ensures that the content area (containing the Course component) always takes up at least the full height of the viewport, even if the content inside it is not enough to fill the screen. */}
+            <Navbar onSearch={setSearchTerm} />
             <div className="min-h-screen">
-                <Course />
+                <Course searchTerm={searchTerm} />
             </div>
             <Footer />
         </>
-    )
+    );
 }
 
-export default Courses
+export default Courses;

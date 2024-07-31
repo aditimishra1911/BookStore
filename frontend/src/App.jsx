@@ -1,31 +1,31 @@
 import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom'; // Import Navigate
 import Home from "./home/Home";
-import { Route, Routes } from "react-router-dom";
+import Contacts from './contact/Contacts';
 import Courses from './courses/Courses';
 import Signup from './components/Signup';
+import Abouts from './about/Abouts'
+import { Toaster } from 'react-hot-toast';
+import { useAuth } from "./context/AuthProvider";
 
 const App = () => {
+  const [authUser, setAuthUser] = useAuth();
+  console.log(authUser);
+
   return (
     <>
       <div className="dark:bg-slate-900 dark:text-white">
-
         <Routes>
-
-          {/* Each <Route> component defines a mapping between a URL path and a React component that should be rendered when the application navigates to that path. */}
-
-          {/* In this case, when the URL path is /, the Home component will be rendered. */}
-
           <Route path="/" element={<Home />} />
-          <Route path="/course" element={<Courses />} />
+          <Route path="/course" element={authUser ? <Courses /> : <Navigate to="/signup" />} />
           <Route path="/signup" element={<Signup />} />
-
+          <Route path="/contact" element={<Contacts />} />
+          <Route path="/about" element={<Abouts />} />
         </Routes>
+        <Toaster />
       </div>
-
-
-
     </>
   );
 }
 
-export default App
+export default App;

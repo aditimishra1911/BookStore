@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Login from './Login';
+import Logout from './Logout';
+import { useAuth } from '../context/AuthProvider';
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
+    const [authUser, setAuthUser] = useAuth();
 
-    // To Change the theme of the page
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
-
-    // This line selects the root HTML element (<html>) and stores it in the constant element.
     const element = document.documentElement;
 
-    // With [theme] Dependency: The effect will run every time the theme state changes, ensuring that the classes and local storage values are updated to match the new theme.
     useEffect(() => {
         if (theme === "dark") {
-            // adds the "dark" class to the root HTML element.
             element.classList.add("dark");
             localStorage.setItem("theme", "dark");
             document.body.classList.add("dark");
@@ -50,10 +48,10 @@ const Navbar = () => {
                 <a href='/course'>Course</a>
             </li>
             <li>
-                <a>Contact</a>
+                <a href='/contact'>Contact</a>
             </li>
             <li>
-                <a>About</a>
+                <a href='/about'>About</a>
             </li>
         </>
     );
@@ -86,10 +84,15 @@ const Navbar = () => {
                             </ul>
                         </div>
 
-                        {/* SEARCH BAR  */}
+                        {/* SEARCH BAR */}
                         <div className="hidden md:block mr-3">
                             <label className="px-3 py-2 border rounded-md flex items-center gap-2 dark:border-gray-600">
-                                <input type="text" className="grow outline-none px-2 dark:bg-slate-800 dark:text-white" placeholder="Search" />
+                                <input
+                                    type="text"
+                                    className="grow outline-none px-2 dark:bg-slate-800 dark:text-white"
+                                    placeholder="Search"
+                                    onChange={(e) => onSearch(e.target.value)}
+                                />
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
                                     <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
                                 </svg>
@@ -97,7 +100,6 @@ const Navbar = () => {
                         </div>
 
                         <label className="swap swap-rotate m-3">
-                            {/* this hidden checkbox controls the state */}
                             <input type="checkbox" className="theme-controller" value="synthwave" />
 
                             {/* sun icon */}
@@ -121,13 +123,21 @@ const Navbar = () => {
                             </svg>
                         </label>
 
-                        {/* Login  */}
-                        <div className="flex items-center">
-                            <a className="bg-black text-white p-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer " onClick={() => document.getElementById("my_modal_3").showModal()} >
-                            Login
-                            </a>
-                            <Login/>
-                        </div>
+                        {authUser ? (
+                            <Logout />
+                        ) : (
+                            <div className="">
+                                <a
+                                    className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
+                                    onClick={() =>
+                                        document.getElementById("my_modal_3").showModal()
+                                    }
+                                >
+                                    Login
+                                </a>
+                                <Login />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Login from './Login';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
     const {
@@ -10,9 +12,30 @@ const Signup = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
-        console.log(data);
-        // Handle form submission logic, such as calling an API
+        const userInfo = {
+            fullname: data.fullname,
+            email: data.email,
+            password: data.password,
+        };
+
+        axios.post("http://localhost:3000/user/signup", userInfo)
+            .then((res) => {
+                console.log(res.data);
+                if (res.data) {
+                    toast.success("SignUp Successfully");
+                    navigate("/");  // Corrected the usage of navigate function
+                }
+                localStorage.setItem("Users", JSON.stringify(res.data.user));
+            })
+            .catch((err) => {
+                if (err.response) {
+                    console.log(err);
+                    toast.error("Error: " + err.response.data.message);
+                }
+            });
     };
 
     return (
@@ -25,15 +48,15 @@ const Signup = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name */}
                         <div className='mt-6'>
-                            <label className='block text-gray-700 dark:text-gray-300 mb-2' htmlFor='name'>Name</label>
+                            <label className='block text-gray-700 dark:text-gray-300 mb-2' htmlFor='fullname'>Name</label>
                             <input
-                                id='name'
+                                id='fullname'
                                 type="text"
                                 placeholder='Enter your full name'
                                 className='w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md outline-none focus:ring-2 focus:ring-pink-500 dark:bg-gray-700 dark:text-white'
-                                {...register("name", { required: true })}
+                                {...register("fullname", { required: true })}
                             />
-                            {errors.name && <span className="text-red-500 text-sm">This field is required</span>}
+                            {errors.fullname && <span className="text-red-500 text-sm">This field is required</span>}
                         </div>
 
                         {/* Email */}
@@ -86,6 +109,6 @@ const Signup = () => {
             <Login />
         </>
     );
-}
+};
 
 export default Signup;

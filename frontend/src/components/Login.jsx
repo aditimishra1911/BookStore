@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const {
@@ -9,10 +11,34 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate(); // Initialize useNavigate
+
     const onSubmit = (data) => {
-        console.log(data);
-        // Close the modal after successful submission
-        document.getElementById("my_modal_3").close();
+        const userInfo = {
+            email: data.email,
+            password: data.password
+        }
+
+        axios.post("http://localhost:3000/user/login", userInfo)
+            .then((res) => {
+                console.log(res.data)
+                if (res.data) {
+                    toast.success("Logged in Successfully")
+                    localStorage.setItem("Users", JSON.stringify(res.data.user))
+                    
+                    // Close the modal after successful submission
+                    const modal = document.getElementById("my_modal_3");
+                    if (modal) modal.close();
+                    
+                    // Redirect to the home page
+                    navigate('/');
+                }
+            }).catch((err) => {
+                if (err.response) {
+                    console.log(err)
+                    toast.error("Error: " + err.response.data.message)
+                }
+            })
     };
 
     return (
@@ -59,12 +85,10 @@ const Login = () => {
                         </div>
 
                         <p className="dark:text-gray-300 mt-4 text-center">
-                        Not registered?
-                        <Link to="/signup" className='underline text-blue-400 cursor-pointer ml-1'> Sign Up</Link>
-                    </p>
+                            Not registered?
+                            <Link to="/signup" className='underline text-blue-400 cursor-pointer ml-1'> Sign Up</Link>
+                        </p>
                     </form>
-
-                    
                 </div>
             </dialog>
         </div>

@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import list from '../assets/list.json'; 
 import Slider from "react-slick";
 import Cards from './Cards';
+import axios from "axios";
 
 const Freebook = () => {
-    const filterData = list.filter((data) => data.category === "Free");
-    console.log(filterData)
+
+    const [book, setBook] = useState([])
+
+    useEffect(() => {
+        // The 'getBook' function makes an HTTP GET request to fetch the data, and upon success, it updates the book state with the data received from the server.
+        const getBook = async () => {
+            try {
+                const res = await axios.get("http://localhost:3000/book");
+                console.log(res.data)
+                const data = res.data.filter((data) => data.category === "Free");
+                setBook(data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getBook();
+    }, [])
 
     var settings = {
         dots: true,
@@ -68,7 +83,7 @@ const Freebook = () => {
 item={item} passes the current item from the filterData array to the Cards component as a prop named item. This allows the Cards component to access the data of the current item.
 key={item.id} is a special prop in React used to identify each element in a list uniquely. */}
 
-                        {filterData.map((item) => (
+                        {book.map((item) => (
                             <Cards item={item} key={item.id} />
                         ))}
                     </Slider>

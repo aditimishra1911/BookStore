@@ -39,7 +39,7 @@ const Banner = () => {
 
                     </div>
 
-                    <button className="btn mt-6 btn-secondary">Sign in</button>
+                    <button className="btn mt-6 btn-secondary">Get Started</button>
 
                 </div>
 
