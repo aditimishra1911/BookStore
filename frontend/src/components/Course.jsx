@@ -12,7 +12,7 @@ const Course = ({ searchTerm }) => {
     // The 'getBook' function makes an HTTP GET request to fetch the data, and upon success, it updates the book state with the data received from the server.
     const getBook = async ()=> {
       try{
-        const res = await axios.get("http://localhost:3000/book");
+        const res = await axios.get("/book");
         console.log(res.data)
         setBook(res.data)
       }catch(error) {
